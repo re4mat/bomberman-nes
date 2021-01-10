@@ -12,11 +12,11 @@ Then you need to concatenate the header, PRG ROM, and CHR ROM into a .NES file. 
 
 Run the following command:
 
-### iNES ROM
+#### iNES ROM
 
 `cat iNES_Header.bin BOMBER.PRG BOMBER.CHR > BOMBER.NES`
 
-### NES 2.0 ROM
+#### NES 2.0 ROM
 
 `cat NES_Header.bin BOMBER.PRG BOMBER.CHR > BOMBER.NES`
 
@@ -24,11 +24,11 @@ Run the following command:
 
 Run the following command:
 
-### iNES ROM
+#### iNES ROM
 
 `copy /B iNES_Header.bin + BOMBER.PRG + BOMBER.CHR /B BOMBER.NES`
 
-### NES 2.0 ROM
+#### NES 2.0 ROM
 
 `copy /B NES_Header.bin + BOMBER.PRG + BOMBER.CHR /B BOMBER.NES`
 

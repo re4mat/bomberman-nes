@@ -31,3 +31,8 @@ Run the following command:
 ### NES 2.0 ROM
 
 `copy /B NES_Header.bin + BOMBER.PRG + BOMBER.CHR /B BOMBER.NES`
+
+## Checksum of compiled ROM (crc32)
+
+iNES: `b9804046`
+NES 2.0: `f5daaf10`

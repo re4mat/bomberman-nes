@@ -35,4 +35,5 @@ Run the following command:
 ## Checksum of compiled ROM (crc32)
 
 iNES: `b9804046`
+
 NES 2.0: `f5daaf10`

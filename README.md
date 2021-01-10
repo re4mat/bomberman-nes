@@ -4,7 +4,7 @@
 
 To compile the .PRG file with DASM, run the following command:
 
-`dasm BMAN.NAS -f3 -oBOMBER.PRG -lBOMBER.LST`
+`dasm Bomberman.asm -f3 -oBomberman.prg -lBomberman.lst`
 
 Then you need to concatenate the header, PRG ROM, and CHR ROM into a .NES file. Included are pre-made headers for creating either an iNES ROM (`iNES_Header.bin`) or a NES 2.0 ROM (`NES_Header.bin`)
 
@@ -14,11 +14,11 @@ Run the following command:
 
 #### iNES ROM
 
-`cat iNES_Header.bin BOMBER.PRG BOMBER.CHR > BOMBER.NES`
+`cat iNES_Header.bin Bomberman.prg Bomberman.chr > Bomberman\ \(USA\).nes`
 
 #### NES 2.0 ROM
 
-`cat NES_Header.bin BOMBER.PRG BOMBER.CHR > BOMBER.NES`
+`cat NES_Header.bin Bomberman.prg Bomberman.chr > Bomberman\ \(USA\).nes`
 
 ## For Windows
 
@@ -26,11 +26,11 @@ Run the following command:
 
 #### iNES ROM
 
-`copy /B iNES_Header.bin + BOMBER.PRG + BOMBER.CHR /B BOMBER.NES`
+`copy /B iNES_Header.bin + Bomberman.prg + Bomberman.chr /B "Bomberman (USA).nes"`
 
 #### NES 2.0 ROM
 
-`copy /B NES_Header.bin + BOMBER.PRG + BOMBER.CHR /B BOMBER.NES`
+`copy /B NES_Header.bin + Bomberman.prg + Bomberman.chr /B "Bomberman (USA).nes"`
 
 ## Checksum of compiled ROM (crc32)
 

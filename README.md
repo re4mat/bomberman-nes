@@ -1,4 +1,4 @@
-# Disassembled/commented source code for NES game Bomberman
+# Disassembled/commented source code for Bomberman (NES)
 
 ![JPG](/Images/README.png)
 

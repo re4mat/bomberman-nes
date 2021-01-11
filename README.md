@@ -1,6 +1,6 @@
 # Disassembled/commented source code for NES game Bomberman
 
-![JPG](/imgstore/whc4f9a3ebbbf486.jpg)
+![JPG](/Images/README.png)
 
 To compile the .PRG file with DASM, run the following command:
 

@@ -379,7 +379,7 @@ PPUE
 ; =============== S U B R O U T I N E =======================================
 
 ; How sprites are drawn.
-; In total, there can be up to 16 sprite images in the game (10 monsters, bomber men and bonus points)
+; In total, there can be up to 16 sprite images in the game (10 monsters, bombermen, and items)
 ; The sprite image consists of 4 sprites and is 16x16 in size.
 ; The sprite table is conventionally divided into two parts: for even and odd frames.
 ; This was done apparently in order to reduce the flickering of sprites.
@@ -392,11 +392,11 @@ PPUE
 ; TEMP = TEMP >= 12 ? TEMP - 10 : TEMP      <-- Limit index to 12
 ; Y = 16 * TEMP                             <-- multiply by 16 because a metasprite consists of 4 sprites
 ; Which is a little strange, but what to take, how they did it, and it is.
-; For example, there is a bomber and 10 monsters on the screen. The TEMP value will be
+; For example, there is Bomberman and 10 monsters on the screen. The TEMP value will be
 ; For even frames: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 ; For odd frames: 6, 7, 8, 9, 10, 11, 2, 3, 4, 5, 6
-; (For odd frames, the bomberman sprites will be overwritten by the monster's sprites and as a result,
-; the bomber picture will flash when there are many sprites on the screen.)
+; (For odd frames, the Bomberman sprites will be overwritten by the monster's sprites and as a result,
+; the Bomberman picture will flash when there are many sprites on the screen.)
 
 
 SENDSPR
@@ -741,7 +741,7 @@ START_STAGE:
         STA APU_MUSIC
         JSR VBLD
         JSR BUILD_MAP   ; Generate a level map with bricks
-        JSR SPAWN       ; Create monsters and bombermen
+        JSR SPAWN       ; Create monsters and Bombermen
         JSR sub_E4AF
         JSR PICTURE_ON  ; Enable screen and sprites
         LDA #200
@@ -752,7 +752,7 @@ STAGE_LOOP:
         JSR SPRD        ; Hide sprites
         JSR sub_CC36    ; Handling button clicks
         JSR BOMB_TICK   ; Bomb timer processing and explosion initiation
-        JSR DRAW_BOMBERMAN  ; Draw bomber man (update sprite)
+        JSR DRAW_BOMBERMAN  ; Draw Bomberman (update sprite)
         JSR THINK       ; Monsters.
         JSR BOMB_ANIMATE    ; Draw bomb animation
         JSR STAGE_TIMER ; Decrease time by 1 second (normal level)
@@ -868,7 +868,7 @@ START_BONUS_STAGE:
         JSR WAITTUNE    ; Wait for the current melody to end
         JSR VBLD
         JSR BUILD_CONCRET_WALLS ; Construct concrete walls
-        JSR SPAWN       ; Create monsters and bombermen
+        JSR SPAWN       ; Create monsters and Bombermen
         JSR PICTURE_ON  ; Enable screen and sprites
         JSR STAGE_CLEANUP
         LDA #6
@@ -887,7 +887,7 @@ BONUS_STAGE_LOOP:
         JSR RESPAWN_BONUS_ENEMY ; If the number of monsters in the bonus level is less than 10, then add more
         JSR sub_CC36    ; Handling button clicks
         JSR BOMB_TICK   ; Bomb timer processing and explosion initiation
-        JSR DRAW_BOMBERMAN  ; Draw bomber man (update sprite)
+        JSR DRAW_BOMBERMAN  ; Draw Bomberman (update sprite)
         JSR THINK       ; Monsters.
         JSR BOMB_ANIMATE    ; Draw bomb animation
         JSR BONUS_STAGE_TIMER ; Decrease time by 1 second (bonus level)
@@ -931,7 +931,7 @@ loc_C58F:
         LDA #1
         STA SPR_TAB_INDEX
         JSR SPRD        ; Hide sprites
-        JSR DRAW_BOMBERMAN  ; Draw bomber man (update sprite)
+        JSR DRAW_BOMBERMAN  ; Draw Bomberman (update sprite)
         LDA FRAME_CNT
         ROR
         BCS loc_C5A4
@@ -966,7 +966,7 @@ WAIT_BUTTON:
 
 ; =============== S U B R O U T I N E =======================================
 
-; Create monsters and bombermen
+; Create monsters and Bombermen
 
 SPAWN:
         LDA #1
@@ -2153,8 +2153,8 @@ CASE_A:
         LDY BOMBMAN_X
         LDA (STAGE_MAP),Y
         BNE CASE_NOTHING    ; There is already something at this place, do not plant a bomb
-        JSR ADJUST_BOMBMAN_HPOS ; Move bomberman slightly left or right after planting the bomb
-        JSR ADJUST_BOMBMAN_VPOS ; Move bomberman slightly up or down after planting the bomb
+        JSR ADJUST_BOMBMAN_HPOS ; Move Bomberman slightly left or right after planting the bomb
+        JSR ADJUST_BOMBMAN_VPOS ; Move Bomberman slightly up or down after planting the bomb
         LDX BONUS_BOMBS
 
 CHECK_AMMO_LEFT:
@@ -2206,7 +2206,7 @@ loc_CD44:
         LDY BOMBMAN_X
         JSR sub_CF60
         BNE loc_CD69
-        JSR ADJUST_BOMBMAN_HPOS ; Move bomberman slightly left or right after planting the bomb
+        JSR ADJUST_BOMBMAN_HPOS ; Move Bomberman slightly left or right after planting the bomb
         INC BOMBMAN_V
         LDA BOMBMAN_V
         CMP #$10
@@ -2242,7 +2242,7 @@ loc_CD7B:
         LDY BOMBMAN_X
         JSR sub_CF60
         BNE loc_CD9C
-        JSR ADJUST_BOMBMAN_HPOS ; Move bomberman slightly left or right after planting the bomb
+        JSR ADJUST_BOMBMAN_HPOS ; Move Bomberman slightly left or right after planting the bomb
         DEC BOMBMAN_V
         BPL loc_CD9C
         LDA #$F
@@ -2276,7 +2276,7 @@ loc_CDAE:
         DEY
         JSR sub_CF60
         BNE loc_CDCF
-        JSR ADJUST_BOMBMAN_VPOS ; Move bomberman slightly up or down after planting the bomb
+        JSR ADJUST_BOMBMAN_VPOS ; Move Bomberman slightly up or down after planting the bomb
         DEC BOMBMAN_U
         BPL loc_CDCF
         LDA #$F
@@ -2309,7 +2309,7 @@ loc_CDDF:
         INY
         JSR sub_CF60
         BNE loc_CE04
-        JSR ADJUST_BOMBMAN_VPOS ; Move bomberman slightly up or down after planting the bomb
+        JSR ADJUST_BOMBMAN_VPOS ; Move Bomberman slightly up or down after planting the bomb
         INC BOMBMAN_U
         LDA BOMBMAN_U
         CMP #$10
@@ -2332,7 +2332,7 @@ loc_CE06:
 
 ; =============== S U B R O U T I N E =======================================
 
-; Move bomberman slightly left or right after planting the bomb
+; Move Bomberman slightly left or right after planting the bomb
 
 ADJUST_BOMBMAN_HPOS:
         LDA BOMBMAN_U
@@ -2354,7 +2354,7 @@ DONT_ADJUST:
 
 ; =============== S U B R O U T I N E =======================================
 
-; Move bomberman slightly up or down after planting the bomb
+; Move Bomberman slightly up or down after planting the bomb
 
 ADJUST_BOMBMAN_VPOS:
         LDA BOMBMAN_V
@@ -2421,7 +2421,7 @@ INCORRECT_FRAMENUM:
 
 ; =============== S U B R O U T I N E =======================================
 
-; Draw bomber man (update sprite)
+; Draw Bomberman (update sprite)
 
 DRAW_BOMBERMAN:
         LDA BOMBMAN_FRAME
@@ -2718,7 +2718,7 @@ loc_CFCF:
         JSR ENEMY_SAVE  ; Push the description of the current monster into temporary variables
         LDA #$CF ; '¦'
         PHA
-        LDA #$E2 ; 'ò'
+        LDA #$E2 ; 't'
         PHA
         LDA THINK_PROC-1,Y
         PHA
@@ -3035,14 +3035,14 @@ loc_D242:
         RTS
 
 ; ---------------------------------------------------------------------------
-THINK_PROC: .WORD $D320     ; Pink onion
-        .WORD $D2E7     ; Blue pepper
-        .WORD $D2C8     ; Barrel
-        .WORD $D305     ; Gingerbread man
-        .WORD $D2B4     ; Cloudy
-        .WORD $D319     ; Jellyfish
-        .WORD $D3A0     ; Wild boar
-        .WORD $D38A     ; Coin
+THINK_PROC: .WORD $D320     ; Valcom
+        .WORD $D2E7     ; O'Neal
+        .WORD $D2C8     ; Dahl
+        .WORD $D305     ; Minvo
+        .WORD $D2B4     ; Doria
+        .WORD $D319     ; Ovape
+        .WORD $D3A0     ; Pass
+        .WORD $D38A     ; Pontan
         .WORD $D2A2
         .WORD $D264
         .WORD $D25B
@@ -3112,7 +3112,7 @@ locret_D2B3:
 locret_D2B4:
         RTS
 ; ---------------------------------------------------------------------------
-        LDA #$10        ; The fifth monster is a cloud
+        LDA #$10        ; Doria (5th monster)
         LDY #$13
         JSR sub_D5DA
         JSR sub_D37E
@@ -3125,7 +3125,7 @@ locret_D2B4:
 locret_D2C8:
         RTS
 ; ---------------------------------------------------------------------------
-        LDA #8      ; Third Monster - Barrel
+        LDA #8      ; Dahl (3rd monster)
         LDY #$B
         JSR sub_D5DA
         JSR sub_D37E
@@ -3145,7 +3145,7 @@ loc_D2E4:
 locret_D2E7:
         RTS
 ; ---------------------------------------------------------------------------
-        LDA #4      ; The second monster is blue pepper
+        LDA #4      ; O'Neal (2nd monster)
         LDY #7
         JSR sub_D5DA
         JSR sub_D37E
@@ -3161,7 +3161,7 @@ locret_D2E7:
 loc_D303:
         JMP loc_D33F
 ; ---------------------------------------------------------------------------
-        LDA #$C     ; The fourth monster - Kolobok
+        LDA #$C     ; Minvo (4th monster)
         LDY #$F
         JSR sub_D5DA
         JSR sub_D37E
@@ -3176,11 +3176,11 @@ loc_D310:
 THINK_SKIP:
         RTS
 ; ---------------------------------------------------------------------------
-        LDA #20     ; Sixth Monster - Medusa
+        LDA #20     ; Ovape (6th monster)
         LDY #23
         JMP loc_D325
 ; ---------------------------------------------------------------------------
-        LDA #0      ; The first monster is the pink onion
+        LDA #0      ; Valcom (1st monster)
         LDY #3
 
 loc_D325:
@@ -3259,7 +3259,7 @@ loc_D388:
         RTS
 
 ; ---------------------------------------------------------------------------
-        LDA #$1C        ; The eighth monster is a coin
+        LDA #$1C        ; Pontan (8th monster)
         LDY #$1F
         JSR sub_D5DA
         LDY #0
@@ -3272,7 +3272,7 @@ loc_D39C:
         STY byte_48
         JMP loc_D3AB
 ; ---------------------------------------------------------------------------
-        LDA #$18        ; The seventh monster - hog
+        LDA #$18        ; Pass (7th monster)
         LDY #$1B
         JSR sub_D5DA
         JSR sub_D37E
@@ -3477,11 +3477,11 @@ ENEMY_COLLISION:
 
 BRICK_WALL:
         LDA M_TYPE
-        CMP #5      ; Cloud, Jellyfish and Coin can pass through brick walls
+        CMP #5      ; Doria, Ovape and Pontan can pass through brick walls
         BEQ locret_D4BF
-        CMP #6      ; Cloud, Jellyfish and Coin can pass through brick walls
+        CMP #6      ; Doria, Ovape and Pontan can pass through brick walls
         BEQ locret_D4BF
-        CMP #8      ; Cloud, Jellyfish and Coin can pass through brick walls
+        CMP #8      ; Doria, Ovape and Pontan can pass through brick walls
         RTS
 
 

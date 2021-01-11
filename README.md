@@ -1,4 +1,4 @@
-# Commented disassembly of Bomberman (NES)
+# Bomberman (NES) commented disassembly
 
 ![PNG](/Images/README.png)
 

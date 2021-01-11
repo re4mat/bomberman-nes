@@ -1,6 +1,6 @@
 # Commented disassembly of Bomberman (NES)
 
-![JPG](/Images/README.png)
+![PNG](/Images/README.png)
 
 To compile the .PRG file with DASM, run the following command:
 
